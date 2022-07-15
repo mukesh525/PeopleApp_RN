@@ -2,10 +2,6 @@ import React, { useContext } from 'react';
 import {
   View,
   Animated,
-  FlatList,
-  TouchableOpacity,
-  Image,
-  Text,
   StyleSheet,
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -23,9 +19,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     position: 'absolute',
     zIndex: 1000,
-    bottom: 0,
+    top: 0,
     left: 0,
-    width: width - 60,
+    width: width,
   },
   text: {
     fontSize: 15,
@@ -59,7 +55,7 @@ const styles = StyleSheet.create({
 
 
 
-const FeedFooter = ({ item, animation }) => {
+const FeedHeader = ({ item, animation }) => {
   const { appTheme } = useContext(AppContext);
   const insets = useSafeAreaInsets();
   const { row, avatar, userDetail, userName, postDetail } = styles;
@@ -82,32 +78,22 @@ const FeedFooter = ({ item, animation }) => {
       style={[
         styles.footer,
         {
-          marginBottom: insets.bottom + 20,
+          marginTop: insets.top + 10,
+
 
         },
         animation,
       ]}>
 
 
-      <View style={{ flexDirection: 'column' }}>
-        {/* <View style={{ backgroundColor: 'grey', height: 130 }}>
-        </View> */}
-        <Comments comments={item.comments} />
-        <TextInput placeholderTextColor={"#FBFBFB"} placeholder='Add Comment'
-          style={{
-            borderColor: '#FBFBFB',
-            height: 50,
-            marginTop: 10,
-            borderWidth: 1,
-            borderRadius: 20,
-            paddingHorizontal: 20
-          }} />
-
-
+      <View style={{ backgroundColor: 'grey', height: 80 }}>
       </View>
+
+
+
 
     </Animated.View>
   );
 };
 
-export { FeedFooter };
+export { FeedHeader };

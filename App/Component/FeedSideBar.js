@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, { useContext } from 'react';
 import {
   View,
   Animated,
@@ -7,10 +7,10 @@ import {
   Text,
   StyleSheet,
 } from 'react-native';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {AppContext} from '../Context';
-import {AppImages} from '../Theme/AppImages';
-import {width} from '../Utils/Constant';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { AppContext } from '../Context';
+import { AppImages } from '../Theme/AppImages';
+import { width } from '../Utils/Constant';
 
 const styles = StyleSheet.create({
   icon: {
@@ -38,12 +38,21 @@ const styles = StyleSheet.create({
     width,
     justifyContent: 'center',
   },
+  avatar: {
+    height: 35,
+    width: 35,
+    borderRadius: 17,
+    borderColor: 'white',
+    borderWidth: 1
+    // marginRight: 10,
+    // alignSelf: 'flex-start'
+  },
 });
 
-const RenderIcon = ({obj, onPress, exStyle = {}}) => {
-  const {appTheme} = useContext(AppContext);
-  const {iconOuter, center, icon, text} = styles;
-  const {type, imageIcon, size = 30, disText} = obj;
+const RenderIcon = ({ obj, onPress, exStyle = {} }) => {
+  const { appTheme } = useContext(AppContext);
+  const { iconOuter, center, icon, text } = styles;
+  const { type, imageIcon, size = 30, disText } = obj;
 
   return (
     <TouchableOpacity
@@ -65,7 +74,7 @@ const RenderIcon = ({obj, onPress, exStyle = {}}) => {
           resizeMode={'contain'}
         />
         {(disText && (
-          <Text style={[text, {color: appTheme.tint}]}>{`${disText}`}</Text>
+          <Text style={[text, { color: appTheme.tint }]}>{`${disText}`}</Text>
         )) ||
           null}
       </View>
@@ -73,11 +82,11 @@ const RenderIcon = ({obj, onPress, exStyle = {}}) => {
   );
 };
 
-const FeedSideBar = ({item, animation}) => {
-  const {appTheme} = useContext(AppContext);
+const FeedSideBar = ({ item, animation }) => {
+  const { appTheme } = useContext(AppContext);
   const insets = useSafeAreaInsets();
-  const {sideBar} = styles;
-  const {like, comment, likeStatus} = item;
+  const { sideBar } = styles;
+  const { like, comment, likeStatus } = item;
 
   const makeAction = async type => {
     // Here perfom feed action based on Type
@@ -93,29 +102,40 @@ const FeedSideBar = ({item, animation}) => {
         animation,
       ]}>
       <RenderIcon
+        obj={{ imageIcon: AppImages.more, size: 35, type: 'More' }}
+        onPress={makeAction} />
+      <Image
+        source={AppImages.user}
+        style={[styles.avatar]}
+      />
+      <RenderIcon
         obj={{
           imageIcon: AppImages.heart,
           disText: like,
           size: 35,
           type: 'Like',
         }}
-        exStyle={{tintColor: (likeStatus && appTheme.red) || appTheme.tint}}
+        exStyle={{ tintColor: (likeStatus && appTheme.red) || appTheme.tint }}
         onPress={makeAction}
       />
       <RenderIcon
-        obj={{imageIcon: AppImages.comment, disText: comment, type: 'Comment'}}
+        obj={{ imageIcon: AppImages.comment, disText: comment, type: 'Comment' }}
         onPress={makeAction}
       />
       <RenderIcon
-        obj={{imageIcon: AppImages.share, type: 'Share'}}
+        obj={{ imageIcon: AppImages.share, type: 'Share', }}
         onPress={makeAction}
       />
       <RenderIcon
-        obj={{imageIcon: AppImages.more, size: 35, type: 'More'}}
-        onPress={makeAction}
-      />
+        obj={{ imageIcon: AppImages.more, size: 35, type: 'More' }}
+        onPress={makeAction} />
+      <RenderIcon
+        obj={{ imageIcon: AppImages.more, size: 35, type: 'More' }}
+        onPress={makeAction} />
+
+
     </Animated.View>
   );
 };
 
-export {FeedSideBar};
+export { FeedSideBar };
