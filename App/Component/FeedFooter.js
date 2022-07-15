@@ -1,18 +1,20 @@
-import React, {useContext} from 'react';
+import React, { useContext } from 'react';
 import {
   View,
   Animated,
+  FlatList,
   TouchableOpacity,
   Image,
   Text,
   StyleSheet,
 } from 'react-native';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {AppContext} from '../Context';
-import {AppImages} from '../Theme/AppImages';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { AppContext } from '../Context';
+import { AppImages } from '../Theme/AppImages';
 import CommonStyle from '../Theme/CommonStyle';
-import {width} from '../Utils/Constant';
-import {FollowButton} from './AppButton';
+import { width } from '../Utils/Constant';
+import { FollowButton } from './AppButton';
+import ReadMore from '@fawazahmed/react-native-read-more';
 
 const styles = StyleSheet.create({
   footer: {
@@ -35,6 +37,7 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     alignItems: 'center',
+    marginVertical: 10,
   },
   userDetail: {
     marginBottom: 5,
@@ -47,17 +50,45 @@ const styles = StyleSheet.create({
     height: 34,
     width: 34,
     borderRadius: 17,
-    marginRight: 5,
+    marginRight: 10,
+    alignSelf: 'flex-start'
   },
 });
 
-const FeedFooter = ({item, animation}) => {
-  const {appTheme} = useContext(AppContext);
+
+const renderItem = ({ item }) => (
+  <View style={styles.row}>
+    <Image
+      source={{
+        uri: item.picUrl,
+      }}
+      style={[
+        styles.avatar
+      ]}
+    />
+    <View style={{ flex: 1, flexDirection: 'column' }}>
+      <Text style={{ color: 'white', fontWeight: 'bold' }}>{item.user}</Text>
+      <ReadMore
+        numberOfLines={2}
+        style={{ color: 'white', marginTop: 5 }}
+        seeMoreStyle={{ color: 'white' }}
+        seeLessStyle={{ color: 'white' }}>
+        {
+          item.comment}
+      </ReadMore>
+    </View>
+  </View>
+);
+
+
+
+const FeedFooter = ({ item, animation }) => {
+  const { appTheme } = useContext(AppContext);
   const insets = useSafeAreaInsets();
-  const {row, avatar, userDetail, userName, postDetail} = styles;
+  const { row, avatar, userDetail, userName, postDetail } = styles;
   const {
-    user: {name, isFollowing},
-    postText,
+    user: { name, isFollowing },
+    comments,
   } = item;
 
   const onUserProfile = () => {
@@ -74,10 +105,25 @@ const FeedFooter = ({item, animation}) => {
         styles.footer,
         {
           marginBottom: insets.bottom + 20,
+
         },
         animation,
       ]}>
-      <View style={[row, userDetail]}>
+      <TouchableOpacity>
+        <View style={{ backgroundColor: 'grey', height: 130 }}>
+        </View>
+        <View style={{ marginTop: 10, flex: 1, maxHeight: 100 }}>
+          <FlatList
+            data={comments}
+            renderItem={renderItem}
+            keyExtractor={item => item.id}
+          />
+        </View>
+        <View style={{ backgroundColor: 'orange', height: 80, marginTop: 10 }}>
+        </View>
+
+      </TouchableOpacity>
+      {/* <View style={[row, userDetail]}>
         <TouchableOpacity activeOpacity={0.6} onPress={onUserProfile}>
           <View style={row}>
             <Image
@@ -98,16 +144,16 @@ const FeedFooter = ({item, animation}) => {
           text={(isFollowing && 'Following') || 'Follow'}
           onPress={onFollow}
         />
-      </View>
-      <View style={postDetail}>
+      </View> */}
+      {/* <View style={postDetail}>
         <Text
           style={[CommonStyle.flexContainer, {color: appTheme.tint}]}
           numberOfLines={2}>
           {postText}
         </Text>
-      </View>
+      </View> */}
     </Animated.View>
   );
 };
 
-export {FeedFooter};
+export { FeedFooter };

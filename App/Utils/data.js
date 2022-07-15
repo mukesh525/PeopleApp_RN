@@ -14,6 +14,54 @@ export const data = [
     like: '121.3 k',
     likeStatus: true,
     postText: 'React Native reels with actions shown in this project',
+    comments: [
+      {
+        id: 1,
+        user: "Mukesh",
+        picUrl: "https://picsum.photos/200",
+        comment: "the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum"
+      },
+      {
+        id: 2,
+        user: "Amol",
+        picUrl: "https://picsum.photos/200",
+        comment: "the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum"
+      },
+      {
+        id: 3,
+        user: "Mukesh",
+        picUrl: "https://picsum.photos/200",
+        comment: "the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum"
+      },
+      {
+        id: 4,
+        user: "Amol",
+        picUrl: "https://picsum.photos/200",
+        comment: "the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum"
+      }, {
+        id: 5,
+        user: "Mukesh",
+        picUrl: "https://picsum.photos/200",
+        comment: "the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum"
+      },
+      {
+        id: 6,
+        user: "Amol",
+        picUrl: "https://picsum.photos/200",
+        comment: "the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum"
+      }, {
+        id: 7,
+        user: "Mukesh",
+        picUrl: "https://picsum.photos/200",
+        comment: "the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum"
+      },
+      {
+        id: 8,
+        user: "Amol",
+        picUrl: "https://picsum.photos/200",
+        comment: "the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum"
+      }
+    ]
   },
   {
     id: 2,
@@ -30,6 +78,7 @@ export const data = [
     like: '10.3 k',
     likeStatus: false,
     postText: 'React Native reels with actions shown in this project',
+    comments: []
   },
   {
     id: 3,
@@ -46,6 +95,54 @@ export const data = [
     like: '121',
     likeStatus: true,
     postText: 'React Native reels with actions shown in this project',
+    comments: [
+      {
+        id: 1,
+        user: "Mukesh",
+        picUrl: "https://picsum.photos/200",
+        comment: "the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum"
+      },
+      {
+        id: 2,
+        user: "Amol",
+        picUrl: "https://picsum.photos/200",
+        comment: "the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum"
+      },
+      {
+        id: 3,
+        user: "Mukesh",
+        picUrl: "https://picsum.photos/200",
+        comment: "the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum"
+      },
+      {
+        id: 4,
+        user: "Amol",
+        picUrl: "https://picsum.photos/200",
+        comment: "the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum"
+      }, {
+        id: 5,
+        user: "Mukesh",
+        picUrl: "https://picsum.photos/200",
+        comment: "the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum"
+      },
+      {
+        id: 6,
+        user: "Amol",
+        picUrl: "https://picsum.photos/200",
+        comment: "the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum"
+      }, {
+        id: 7,
+        user: "Mukesh",
+        picUrl: "https://picsum.photos/200",
+        comment: "the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum"
+      },
+      {
+        id: 8,
+        user: "Amol",
+        picUrl: "https://picsum.photos/200",
+        comment: "the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum"
+      }
+    ]
   },
   {
     id: 4,
@@ -78,5 +175,6 @@ export const data = [
     like: '121.3 k',
     likeStatus: true,
     postText: 'React Native reels with actions shown in this project',
+    comments: []
   },
 ];
