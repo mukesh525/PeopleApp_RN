@@ -59,19 +59,8 @@ const FeedHeader = ({ item, animation }) => {
   const insets = useSafeAreaInsets();
 
   return (
-
     <Animated.View
-      style={[
-        styles.footer,
-        {
-          marginTop: insets.top + 10,
-
-
-        },
-        animation,
-      ]}>
-
-
+      style={[styles.footer, { marginTop: insets.top + 10, }, animation]}>
       <View style={{ backgroundColor: 'transparent', flexDirection: 'row', flex: 1, justifyContent: 'center' }}>
         <TouchableOpacity onPress={() => setSelected(0)}>
           <Text style={{ color: selected == 0 ? 'white' : "#999999", fontSize: 16, alignItems: 'center', fontWeight: 'bold' }}>Following</Text>
@@ -81,10 +70,6 @@ const FeedHeader = ({ item, animation }) => {
           <Text style={{ color: selected == 1 ? 'white' : "#999999", fontSize: 16, alignItems: 'center', fontWeight: 'bold' }}>For You</Text>
         </TouchableOpacity>
       </View>
-
-
-
-
     </Animated.View>
   );
 };
