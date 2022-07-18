@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useRef } from 'react';
 import {
     View,
     Animated,
@@ -77,9 +77,10 @@ const comment = ({ item }) => (
 );
 
 const Comments = ({ comments }) => {
+    const refFlatList = useRef();
     return (
         <AutoScrollFlatList
-            ref={this.myRef}
+            ref={refFlatList}
             threshold={10}
             style={{ marginTop: 10, flex: 1, maxHeight: 200, overflow: "hidden" }}
             data={comments}

@@ -38,14 +38,13 @@ const Home = () => {
   };
 
   const getItemLayout = (item, index) => ({
-    length: displayHeight + 100,
+    length: displayHeight,
     offset: displayHeight * index,
     index,
   });
 
   const onLayout = ({ nativeEvent }) => {
-    //  let height=(!isIOS && nativeEvent.layout.height) || height;
-    setDisplayHeight(((!isIOS && nativeEvent.layout.height) || height) - 100);
+    setDisplayHeight((!isIOS && nativeEvent.layout.height) || height);
   };
 
   const onEndReached = () => {
@@ -72,12 +71,11 @@ const Home = () => {
   };
 
   return (
-    <View style={[CommonStyle.flexContainer, { position: 'absolute' }]} onLayout={onLayout}>
+    <View style={CommonStyle.flexContainer} onLayout={onLayout}>
       <Animated.FlatList
         pagingEnabled
         showsVerticalScrollIndicator={false}
         ref={refFlatList}
-        style={{ bottom: 0, top: 0, left: 0, right: 0 }}
         automaticallyAdjustContentInsets={true}
         onViewableItemsChanged={onViewableItemsChanged.current}
         viewabilityConfig={viewabilityConfig}
@@ -99,8 +97,6 @@ const Home = () => {
         onEndReached={onEndReached}
         removeClippedSubviews={true}
       />
-      {/* <View style={{ height: 80, backgroundColor: 'red', position: 'absolute', bottom: 0 }}></View> */}
-
     </View>
   );
 };

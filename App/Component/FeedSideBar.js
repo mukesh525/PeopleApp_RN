@@ -11,6 +11,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { AppContext } from '../Context';
 import { AppImages } from '../Theme/AppImages';
 import { width } from '../Utils/Constant';
+import { Bookmark } from '../Utils/icons'
 
 const styles = StyleSheet.create({
   icon: {
@@ -18,7 +19,8 @@ const styles = StyleSheet.create({
     marginVertical: 5,
   },
   text: {
-    fontSize: 15,
+    fontSize: 12,
+    marginTop: 10,
     textAlign: 'center',
   },
   sideBar: {
@@ -39,11 +41,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   avatar: {
-    height: 35,
-    width: 35,
-    borderRadius: 17,
+    height: 45,
+    width: 45,
+    borderRadius: 45 / 2,
     borderColor: 'white',
-    borderWidth: 1
+    borderWidth: 1.5
     // marginRight: 10,
     // alignSelf: 'flex-start'
   },
@@ -52,15 +54,16 @@ const styles = StyleSheet.create({
 const RenderIcon = ({ obj, onPress, exStyle = {} }) => {
   const { appTheme } = useContext(AppContext);
   const { iconOuter, center, icon, text } = styles;
-  const { type, imageIcon, size = 30, disText } = obj;
+  const { type, imageIcon, size = 30, SvgIcon, disText } = obj;
 
   return (
     <TouchableOpacity
       activeOpacity={0.6}
       onPress={() => onPress(type)}
       style={iconOuter}>
-      <View styles={center}>
-        <Image
+      <View style={center}>
+        {(SvgIcon !== null) && SvgIcon}
+        {imageIcon && <Image
           source={imageIcon}
           style={[
             icon,
@@ -73,6 +76,7 @@ const RenderIcon = ({ obj, onPress, exStyle = {} }) => {
           ]}
           resizeMode={'contain'}
         />
+        }
         {(disText && (
           <Text style={[text, { color: appTheme.tint }]}>{`${disText}`}</Text>
         )) ||
@@ -101,9 +105,6 @@ const FeedSideBar = ({ item, animation }) => {
         },
         animation,
       ]}>
-      <RenderIcon
-        obj={{ imageIcon: AppImages.more, size: 35, type: 'More' }}
-        onPress={makeAction} />
       <Image
         source={AppImages.user}
         style={[styles.avatar]}
@@ -123,15 +124,13 @@ const FeedSideBar = ({ item, animation }) => {
         onPress={makeAction}
       />
       <RenderIcon
-        obj={{ imageIcon: AppImages.share, type: 'Share', }}
+        obj={{ imageIcon: AppImages.share, type: 'Share', disText: "Share" }}
         onPress={makeAction}
       />
       <RenderIcon
-        obj={{ imageIcon: AppImages.more, size: 35, type: 'More' }}
-        onPress={makeAction} />
-      <RenderIcon
-        obj={{ imageIcon: AppImages.more, size: 35, type: 'More' }}
-        onPress={makeAction} />
+        obj={{ SvgIcon: <Bookmark width={35} height={35} />, type: 'Share', disText: "Bookmark" }}
+        onPress={makeAction}
+      />
 
 
     </Animated.View>

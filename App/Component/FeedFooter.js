@@ -93,7 +93,7 @@ const FeedFooter = ({ item, animation }) => {
         {/* <View style={{ backgroundColor: 'grey', height: 130 }}>
         </View> */}
         <Comments comments={item.comments} />
-        <TextInput placeholderTextColor={"#FBFBFB"} placeholder='Add Comment'
+        <TextInput placeholderTextColor={"#FBFBFB"} placeholder='Add answer ...'
           style={{
             borderColor: '#FBFBFB',
             height: 50,
