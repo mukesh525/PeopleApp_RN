@@ -1,18 +1,18 @@
-import React, {useState, useRef, useContext} from 'react';
-import {View, Animated} from 'react-native';
-import {FeedRow} from '../Component/FeedRow';
-import {AppContext} from '../Context';
+import React, { useState, useRef, useContext } from 'react';
+import { View, Animated } from 'react-native';
+import { FeedRow } from '../Component/FeedRow';
+import { AppContext } from '../Context';
 import CommonStyle from '../Theme/CommonStyle';
-import {height, isIOS} from '../Utils/Constant';
-import {data} from '../Utils/data';
+import { height, isIOS } from '../Utils/Constant';
+import { data } from '../Utils/data';
 
 const Home = () => {
-  const {displayHeight, setDisplayHeight} = useContext(AppContext);
+  const { displayHeight, setDisplayHeight } = useContext(AppContext);
   const refFlatList = useRef();
   const [scrollY] = useState(new Animated.Value(0));
-  const [scrollInfo, setScrollInfo] = useState({isViewable: true, index: 0});
+  const [scrollInfo, setScrollInfo] = useState({ isViewable: true, index: 0 });
 
-  const viewabilityConfig = {viewAreaCoveragePercentThreshold: 80};
+  const viewabilityConfig = { viewAreaCoveragePercentThreshold: 80 };
   const onViewableItemsChanged = useRef(viewableItems => {
     const info = {
       isViewable: viewableItems.changed[0].isViewable,
@@ -38,13 +38,14 @@ const Home = () => {
   };
 
   const getItemLayout = (item, index) => ({
-    length: displayHeight,
+    length: displayHeight + 100,
     offset: displayHeight * index,
     index,
   });
 
-  const onLayout = ({nativeEvent}) => {
-    setDisplayHeight((!isIOS && nativeEvent.layout.height) || height);
+  const onLayout = ({ nativeEvent }) => {
+    //  let height=(!isIOS && nativeEvent.layout.height) || height;
+    setDisplayHeight(((!isIOS && nativeEvent.layout.height) || height) - 100);
   };
 
   const onEndReached = () => {
@@ -55,7 +56,7 @@ const Home = () => {
     return `${item.id}`;
   };
 
-  const renderItem = ({item, index}) => {
+  const renderItem = ({ item, index }) => {
     const scrollIndex = scrollInfo?.index || 0;
     const isNext = index >= scrollIndex - 1 && index <= scrollIndex + 1;
     return (
@@ -71,18 +72,19 @@ const Home = () => {
   };
 
   return (
-    <View style={CommonStyle.flexContainer} onLayout={onLayout}>
+    <View style={[CommonStyle.flexContainer, { position: 'absolute' }]} onLayout={onLayout}>
       <Animated.FlatList
         pagingEnabled
         showsVerticalScrollIndicator={false}
         ref={refFlatList}
+        style={{ bottom: 0, top: 0, left: 0, right: 0 }}
         automaticallyAdjustContentInsets={true}
         onViewableItemsChanged={onViewableItemsChanged.current}
         viewabilityConfig={viewabilityConfig}
         onScroll={Animated.event(
           [
             {
-              nativeEvent: {contentOffset: {y: scrollY}},
+              nativeEvent: { contentOffset: { y: scrollY } },
             },
           ],
           {
@@ -97,6 +99,8 @@ const Home = () => {
         onEndReached={onEndReached}
         removeClippedSubviews={true}
       />
+      {/* <View style={{ height: 80, backgroundColor: 'red', position: 'absolute', bottom: 0 }}></View> */}
+
     </View>
   );
 };

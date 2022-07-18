@@ -2,14 +2,12 @@ import React, { useContext, useState } from 'react';
 import {
   View,
   Animated,
+  Text,
   StyleSheet,
   TouchableOpacity,
-  Text
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { AppContext } from '../Context';
-import { AppImages } from '../Theme/AppImages';
-import CommonStyle from '../Theme/CommonStyle';
 import { width } from '../Utils/Constant';
 
 const styles = StyleSheet.create({
@@ -53,10 +51,9 @@ const styles = StyleSheet.create({
 
 
 
-const FeedHeader = ({ item, animation }) => {
-  const { appTheme } = useContext(AppContext);
-  const [selected, setSelected] = useState(0)
+const FeedBottom = ({ item, animation }) => {
   const insets = useSafeAreaInsets();
+  const [selected, setSelected] = useState(0)
 
   return (
 
@@ -65,20 +62,23 @@ const FeedHeader = ({ item, animation }) => {
         styles.footer,
         {
           marginTop: insets.top + 10,
-
-
         },
         animation,
       ]}>
 
-
-      <View style={{ backgroundColor: 'transparent', flexDirection: 'row', flex: 1, justifyContent: 'center' }}>
+      <View style={{
+        height: 40,
+        flex: 1,
+        padding: 10,
+        flexDirection: 'row',
+        justifyContent: 'center'
+      }}>
         <TouchableOpacity onPress={() => setSelected(0)}>
-          <Text style={{ color: selected == 0 ? 'white' : "#999999", fontSize: 16, alignItems: 'center', fontWeight: 'bold' }}>Following</Text>
+          <Text style={{ color: selected == 0 ? 'white' : '#999999', fontWeight: 'bold', fontSize: 16 }}>Following</Text>
         </TouchableOpacity>
-        <View style={{ width: .5, backgroundColor: "#999999", marginHorizontal: 10 }} />
+        <View style={{ width: .5, backgroundColor: '#999999', marginHorizontal: 10 }} />
         <TouchableOpacity onPress={() => setSelected(1)}>
-          <Text style={{ color: selected == 1 ? 'white' : "#999999", fontSize: 16, alignItems: 'center', fontWeight: 'bold' }}>For You</Text>
+          <Text style={{ color: selected == 1 ? 'white' : '#999999', fontWeight: 'bold', fontSize: 16 }} >For You</Text>
         </TouchableOpacity>
       </View>
 
